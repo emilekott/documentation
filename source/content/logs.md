@@ -20,7 +20,7 @@ The server timezone and all log timestamps are in UTC (Coordinated Universal Tim
 | **mysqld-slow-query.log** | 10MB of log data      | Log of MySQL queries that took more than 120 seconds to execute. Located in the database's `logs/` directory. |
 | **mysqld.log**            | 1MB of log data       | Log of established MySQL client connections and statements received from clients. Also Located in the database's `logs/` directory. |
 
-Rotated log files are archived within the `/logs` directory on application containers and database servers. You may find this directory contains sub-directories for each service that runs (ie NGINX and php) (e.g. `/logs/nginx/nginx-access.log-20160617.gz` or `/logs/php/php-error.log-20160617.gz` or `/logs/mysqld-slow-query.log-20160606`).
+Rotated log files are archived within the `/logs` directory on application containers and database servers. You may find that this directory contains sub-directories for services like Nginx and PHP (e.g. `/logs/nginx/nginx-access.log-20160617.gz` or `/logs/php/php-error.log-20160617.gz`) or log files directly in `logs` (e.g. `/logs/mysqld-slow-query.log-20160606`).
 
 <Alert title="Note" type="info">
 
@@ -33,7 +33,7 @@ Logs are stored within application containers that house your site's codebase an
 
 In the Connection Information section of the dashboard, we can see a pattern about the hostnames:
 
-```
+```none
 <env>.<site-uuid>@<type>.<env>.<site-uuid>.drush.in
 ```
 
@@ -51,12 +51,13 @@ In the Connection Information section of the dashboard, we can see a pattern abo
 3. Open a terminal window and paste the SFTP connection command.
 4. Run the following SFTP command in terminal:
 
-   ```
+   ```none
    get -r logs
    ```
 
 You now have a local copy of the logs directory, which contains the following:
-```
+
+```none
 ├── logs
     └──php
         └──newrelic.log
@@ -68,9 +69,9 @@ You now have a local copy of the logs directory, which contains the following:
         └──nginx-error.log
 ```
 
-You may still see the logs in this structure as well:
+You may still see log files in this structure as well:
 
-```
+```none
 ├── logs
     └──newrelic.log
     └──nginx-access.log
@@ -86,23 +87,26 @@ You may still see the logs in this structure as well:
 3. Edit and execute the command by replacing `appserver` with `dbserver`:
 
  From:
- ```
+
+ ```bash
  sftp -o Port=2222 dev.de305d54-75b4-431b-adb2-eb6b9e546014@appserver.dev.de305d54-75b4-431b-adb2-eb6b9e546014.drush.in`
  ```
 
  To:
- ```
+
+ ```bash
  sftp -o Port=2222 dev.de305d54-75b4-431b-adb2-eb6b9e546014@dbserver.dev.de305d54-75b4-431b-adb2-eb6b9e546014.drush.in`
  ```
 
 4. Run the following SFTP command in terminal:
 
- ```
+ ```bash
  get -r logs
  ```
 
 You now have a local copy of the logs directory, which contains the following:
-```
+
+```none
 ├── logs
     └──mysqld-slow-query.log
     └──mysqld.log
