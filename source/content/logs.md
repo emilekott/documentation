@@ -126,7 +126,8 @@ cd $HOME/site-logs
 
 Using your favorite text editor, create a file within the `site-logs` directory called `collect-logs.sh` and include the following:
 
-```bash
+```bash:title=collect-logs.sh
+#!/bin/bash
 # Site UUID from Dashboard URL, eg 12345678-1234-1234-abcd-0123456789ab
 SITE_UUID=xxxxxxxxxxx
 ENV=live
@@ -149,8 +150,8 @@ For densely populated directories, using `*` can cause failures. If the script f
 ### Collect Logs
 Download logs by executing the script from within the `site-logs` directory:
 
-```
-sh collect-logs.sh
+```bash{promptUser:user}
+bash collect-logs.sh
 ```
 
 You can now access the logs from within the `site-log` directory. More than one directory is generated for sites that use multiple application containers.
@@ -209,17 +210,11 @@ By default, Drupal logs events using the Database Logging module (dblog). PHP fa
  terminus drush <site>.<env> -- watchdog-show
  ```
 
- * Terminus can invoke Drush commands to "watch" events in real-time; `--tail` can be used to continuously show new watchdog messages until  interrupted (Control+C).
+* Terminus can invoke Drush commands to "watch" events in real-time; `--tail` can be used to continuously show new watchdog messages until  interrupted (Control+C).
 
-  ```bash
-  terminus drush <site>.<env> -- watchdog-show --tail
-  ```
-
-  <Alert title="Note" type="info">
-
-  At this time, `terminus drush "watchdog-show --tail"` is supported in 0.13.x versions and below, and not yet supported in  Terminus 1.x.
-
-  </Alert>
+ ```bash
+ terminus drush <site>.<env> -- watchdog-show --tail
+ ```
 
 ### My Drupal database logs are huge. Should I disable dblog?
 

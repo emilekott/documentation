@@ -20,10 +20,10 @@ Requests served by the [Pantheon Global CDN](/global-cdn) will not hit the nginx
 
 Be sure that you have:
 
-- [Terminus](/terminus)
+- [Terminus](/terminus/)
 - [GoAccess](https://goaccess.io/download)
- - **Mac OS X**: Install via [Homebrew](https://brew.sh/)
- - **Windows**: Use [Cygwin](https://cygwin.com/install.html)
+- **Mac OS X**: Install via [Homebrew](https://brew.sh/)
+- **Windows**: Use [Cygwin](https://cygwin.com/install.html)
 
 ## Edit GoAccess Configuration
 
