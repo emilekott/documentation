@@ -45,6 +45,9 @@ function SEO({ description, lang, meta, keywords, title, authors, image, categor
   } : {
   }
 
+  const addSearchCategories = categories.map((value) =>
+    `category=${value}`
+  ).join(";")
 
   return (
     <Helmet
@@ -56,6 +59,10 @@ function SEO({ description, lang, meta, keywords, title, authors, image, categor
 
       meta={[
         {...tagValues},
+        {
+          name: `addsearch-custom-field`,
+          content: addSearchCategories
+        },
         {
           itemprop: `name`,
           content: `${title} | ${site.siteMetadata.title}`,
