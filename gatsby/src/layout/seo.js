@@ -33,7 +33,7 @@ function SEO({ description, lang, meta, keywords, title, authors, image, categor
   const authorList = authors ? Array.from(authors) : []
   const addSearchCategories = categories ? categories.map((value) =>
     `category=${value}`
-  ).join(";") : []
+  ).join(";") : `category=other`
 
   const titleProps = title ? {
     title: `${title}`,
