@@ -684,6 +684,17 @@ This error sometimes leads users to believe that ManageWP's IP addresses need to
 An alternative solution is to [create a symbolic link](/assuming-write-access/#create-a-symbolic-link).
 <hr />
 
+### [PolyLang](https://wordpress.org/plugins/nextgen-gallery/)
+**Issue**: The plugin adds a cache-busting cookie (ex. pll_language=en ) for each request. 
+
+
+**Solution**: A constant setting is available to remove or rename the cookie. Set this in wp-config.php:
+
+```define('PLL_COOKIE', false)```
+
+```Option : PLL_COOKIEDefaults to 'pll_polylang'.Defines the name of the cookie used by Polylang to store the visitor's language.When PLL_COOKIE is set to false, Polylang does not set any cookie. Be aware that in this case, not everything will work correctly. For example, the login page will not translate.```
+
+<hr />
 
 ### [Query Monitor](https://wordpress.org/plugins/query-monitor/)
 **Issue**: Creates a symlink with an absolute path, which will only work on the appserver where the plugin was installed. The plugin is not fully designed for cloud or multi server environments.
