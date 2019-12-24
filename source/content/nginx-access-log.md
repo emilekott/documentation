@@ -22,7 +22,7 @@ Be sure that you have:
 * [Terminus](/terminus)
 * [GoAccess](https://goaccess.io/download)
   * **Mac OS X**: Install via [Homebrew](https://brew.sh/) (`brew install goaccess`)
-  * **Windows**: Use [Cygwin](https://cygwin.com/install.html)
+  * **Windows**: Use [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
   
 This guide is written for the latest stable release of GoAccess as of this writing, which is version 1.3 ([release notes](https://goaccess.io/release-notes#release-1.3)).
 
@@ -32,9 +32,9 @@ To parse your `nginx-access.log` files with GoAccess, you'll need to configure G
 
 The configuration file is located under `~/.goaccessrc` or `%sysconfdir%/goaccess.conf` where `%sysconfdir%` is either `/etc/`, `/usr/etc/` or `/usr/local/etc/` ([read more](https://goaccess.io/faq#configuration)).
 
-Add the following lines to the `goaccess.conf` file, located in either `/etc/`, `/usr/etc/` or `/usr/local/etc/` depending on your installation method. You can also read from a `goaccess.conf` file in your home directory.
+Add the following lines to the `goaccess.conf` file:
 
-```
+```conf:title=goaccess.conf
 time-format %T
 date-format %d/%b/%Y
 log-format %h - %^ [%d:%t %^]  "%r" %s %b "%R" "%u" %T "%^"
@@ -43,24 +43,21 @@ log-format %h - %^ [%d:%t %^]  "%r" %s %b "%R" "%u" %T "%^"
 ## Create a report
 
 1. [Download your nginx log files](/logs) from Pantheon via SFTP.
-2. From the directory containing your `nginx-access.log` file, run GoAccess:
+1. From the directory containing your `nginx-access.log` file, run GoAccess:
 
-```bash
-goaccess nginx-access.log
-```
+  ```bash{promptUser: user}
+  goaccess nginx-access.log
+  ```
+
 You can use the arrow keys on your keyboard to scroll down to view more of the report, or hit `q` to exit.
 
 Alternatively, you can generate an HTML report with this command:
 
-```bash
+```bash{promptUser: user}
 goaccess nginx-access.log > report.html
 ```
 
-View that report in your browser:
-
-```bash
-open report.html
-```
+View that report in your browser by opening `report.html`:
 
 ## Automate GoAccess Reports
 
